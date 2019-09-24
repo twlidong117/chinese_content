@@ -1,0 +1,7 @@
+{
+  "name": "Random Chinese Characters",
+  "id": "757978381177881636",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "main.html" 
+}

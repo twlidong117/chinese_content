@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>随机汉字生成</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+                font-size: 14px;
+            }
+            #input-form {
+                display: flex;
+                margin-top: 8px;
+            }
+            #nums {
+                border: 1px solid #a9a9a9;
+                border-radius: 2px;
+                height: 20px;
+            }
+            #confirm {
+                border: none;
+                border-radius: 4px;
+                padding: 5px 10px;
+                margin-left: 8px;
+                background: #24069B;
+                color: #fff;
+            }
+            #error {
+                margin-top: 8px;
+                color: red;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="label">需要生成多少个汉字？<br />（可选范围：1～300）</div>
+            <div id="input-form">
+                <input type="number" id="nums">
+                <button id="confirm">确定</button>
+            </div>
+            <div id="error"></div>
+        </div>
+        <script>
+            const errorNode = document.querySelector('#error');
+            document.querySelector('#nums').addEventListener('focus', e => {
+                errorNode.textContent = '';
+            })
+            document.querySelector('#confirm').addEventListener('click', e => {
+                const nums = parseInt(document.querySelector('#nums').value);
+                if (isNaN(nums)) {
+                    errorNode.textContent = '请输入正整数';
+                    return;
+                } else if(nums < 1) {
+                    errorNode.textContent = '汉字个数需要多于1个';
+                    return;
+                } else if (nums > 300) {
+                    errorNode.textContent = '汉字个数不能超过300个';
+                    return;
+                }
+                parent.postMessage({ pluginMessage: nums }, '*')
+            })
+        </script>
+    </body>
+</html>
